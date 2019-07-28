@@ -1,0 +1,66 @@
+﻿<Page
+    x:Class="ProjectSparky.Views.Settings.ScreenBrightness"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ProjectSparky.Views.Settings"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d" 
+    Height="480" Width="780">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Margin="10,0,0,0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="120"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <TextBlock 
+            Grid.Row="0"
+            Text="Screen Brightness"
+            VerticalAlignment="Center"
+            FontSize="20" />
+        <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="5">
+            <Slider 
+                Grid.Row="1" 
+                VerticalAlignment="Center"
+                Width="700"
+                TickFrequency="10" 
+                TickPlacement="Outside"
+                Minimum="0" 
+                Maximum="100" 
+                StepFrequency="5"
+                ManipulationMode="All" 
+                ManipulationCompleted="{x:Bind myScreenBrightnessVM.ScreenBrightness_ManipulationCompleted}"
+                Value="{x:Bind myScreenBrightnessVM.ScreenBrightness, Mode=TwoWay}" 
+                ValueChanged="{x:Bind myScreenBrightnessVM.ScreenBrightness_Changed}"/>
+            <TextBlock
+                Margin="5" 
+                FontSize="25" 
+                VerticalAlignment="Center" 
+                HorizontalAlignment="Center"
+                Text="{x:Bind myScreenBrightnessVM.ScreenBrightness, Mode=OneWay}" FontFamily="Segoe UI"/>
+        </StackPanel>
+        <StackPanel
+            Grid.Row="2"
+            Orientation="Vertical">
+            <ToggleSwitch
+                Header="Dim Screen during night time" 
+                IsOn="{x:Bind myScreenBrightnessVM.ShowNightTimeSettings, Mode=TwoWay}" 
+                Toggled="{x:Bind myScreenBrightnessVM.NightTimeEnabled_Toggle}" />
+            <StackPanel
+                Orientation="Vertical" 
+                Visibility="{x:Bind myScreenBrightnessVM.ShowNightTimeSettings, Mode=OneWay}">
+                <TimePicker
+                    Header="Night Time Start: " 
+                    Margin="0,0,0,10" 
+                    Time="{x:Bind myScreenBrightnessVM.StartNightTime, Mode=TwoWay}"
+                    TimeChanged="{x:Bind myScreenBrightnessVM.StartNightTime_TimeChanged}"/>
+                <TimePicker 
+                    Header="Day Time Start:" 
+                    Time="{x:Bind myScreenBrightnessVM.EndNightTime, Mode=TwoWay}" 
+                    TimeChanged="{x:Bind myScreenBrightnessVM.EndNightTime_TimeChanged}"/>
+            </StackPanel>
+        </StackPanel>
+        
+    </Grid>
+</Page>
