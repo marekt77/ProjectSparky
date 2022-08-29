@@ -235,12 +235,12 @@ namespace ProjectSparky.ViewModels
             }
         }
 
-        private ICommand _SettingsButtonCommand;
+        private ICommand _settingsButtonCommand;
         public ICommand SettingsButtonCommand
         {
             get
             {
-                return _SettingsButtonCommand ??
+                return _settingsButtonCommand ??
                     new RelayCommand(() =>
                     {
                         _navigationService.Navigate(typeof(SettingsView));
