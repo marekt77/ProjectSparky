@@ -33,7 +33,7 @@ namespace ProjectSparky
 
             using (var db = new ProjectSparyContext())
             {
-                db.Database.Migrate();
+                //db.Database.Migrate();
             }
         }
 
